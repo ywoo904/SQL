@@ -1,0 +1,75 @@
+시험 1번쨰문제 가장 나중에 하기 
+----------------------------------------------------------------
+
+CREATE TABLE STUDENT (
+id varchar(5) PRIMARY KEY, 
+name varchar(5) NOT NULL, 
+tel char(3)
+); 
+
+INSERT INTO STUDENT VALUES  ('park', 'park', '011'); 
+INSERT INTO STUDENT VALUES  ('kim', 'kim', '012');
+
+CREATE TABLE SUBJECT(
+tel tinyint primary key 
+
+); 
+
+INSERT INTO SUBJECT VALUES  ('s100', 'java', 201); 
+INSERT INTO SUBJECT VALUES  ('s200', 'python', 202);
+
+CREATE TABLE LECTURE(
+LECTURE_id varchar(10)  NOT NULL, 
+STUDENTid varchar(10)  NOT NULL, 
+SUBJECTid varchar(10)  NOT NULL,
+FOREIGN KEY (STUDENTid) REFERENCES STUDENT(id),   
+FOREIGN KEY (SUBJECTid) REFERENCES SUBJECT(id)  
+); 
+
+
+INSERT INTO LECTURE VALUES  ('c100', 'park', 's100'); 
+INSERT INTO LECTURE VALUES  ('c200', 'kim', 's200');
+
+
+----------------------------------------------
+17번 
+
+CREATE VIEW EMV_DEPT_VIEW
+AS
+SELECT A.employee_id AS 사번, a.first_name AS 이름 , a.last_name AS 성,
+A. JOB_ID AS 직책, D.DEPARTMENT_NAME AS 부서명, D.LOCATION_ID AS 부서위치
+FROM employees A, departments D;
+
+
+SELECT 사번, concat(concat(이름,' '),성) as 이름,직책, 부서명, 부서위치
+FROM EMV_DEPT_VIEW;  
+
+
+
+------------------------------------------
+18번 
+SELECT department_id 부서번호, salary 월급
+    FROM employees 
+    
+    UNION 
+
+SELECT null as department_id ,SUM(SALARY)
+FROM employees; 
+
+
+
+제약조건             적용한테이블           			적용코드 
+PRIMARY KEY       CUSTOMER_ID         			CUSTOMER_ID VARCHAR(12) PRIMARY KEY
+FOREIGN KEY       SYSORDER_CUSTOMER_ID 	FOREIGN 	KEY (CUSTOMER_ID) REFERENCES CUSTOMER(CUSTOMER_ID)
+NOT NULL 	 SYSORDER_ORDER_ADDRESS         		ORDER_ADDRESS VARCHAR(50) NOT NULL
+UNIQUE              SHOE_SHOE_NAME 			SHOE_NAME VARCHAR(30) UNIQUE
+DEFAULT 	 SHOE_SHOE_STOCK			SHOE_STOCK  INT DEFAULT 0 
+
+
+
+
+
+
+
+
+
