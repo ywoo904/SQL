@@ -1,0 +1,79 @@
+employees테이블과 dept테이블을 사용하여 
+employee_id
+first_name
+last_name
+email
+dname
+loc이 조회되도록 e_d_view라는 이름으로 뷰를 생성
+-------------------------------------------------------------------------------
+CREATE VIEW e_d_view
+AS
+SELECT a.employee_id, a.first_name, a.last_name, a.email, d.dname, d.loc
+FROM employees A, dept D;
+--------------------------------------------------------------------------------
+employees 에서
+fisrst_name
+last_name 를 붙여서 name concat
+job_id
+salary 출력하고
+
+부서번호별로 묶어서 월급의 합계를 출력하고  UNION <-열의 개수를 맞춰줘야한다.
+----------------------------------------------------------------------------------------
+SELECT concat(concat(A.first_name, ' '), A.last_name) AS name, department_id, salary
+    FROM employees A
+UNION
+SELECT NULL, department_id, SUM(salary)
+FROM employees
+GROUP BY department_id
+;
+----------------------------------------------------------------------------------------
+월급들 전체의 합계를 제일 아래에 출력
+SELECT concat(A.first_name, A.last_name) AS name, department_id, salary
+    FROM employees A
+UNION
+SELECT NULL, department_id, SUM(salary)
+FROM employees
+GROUP BY department_id
+UNION
+SELECT NULL, null AS department_id, SUM(salary)
+FROM employees
+;
+--------------------------------------------------------------------------------------
+주문목록 테이블에서 판매가를 정렬하여 출력하시오
+item_id quantity sales
+
+rank
+dense_rank
+row_number
+---------------------------------------------------------------------------------------
+SELECT item_id, quantity, sales,
+RANK() OVER(ORDER BY sales DESC) as RANK,
+DENSE_RANK() OVER(ORDER BY sales DESC) as DENSE_RANK,
+ROW_NUMBER() OVER(ORDER BY sales DESC) as ROW_NUMBER
+FROM order_info
+;
+---------------------------------------------------------------------------------------
+
+시나리오
+도서관 데이터베이스를 구축하려고 한다. 
+요구사항을 분석해서 필요한 엔터티(테이블)로 테이블을 만들고 속성(열)을 설정하시오
+요구사항: 엔터티의 개수는 3개 / 각 엔터티에는 속성을 3개이상 설정하시오
+
+엔터티 이름: 책이름 책코드 권수 
+엔터티의 속성:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
